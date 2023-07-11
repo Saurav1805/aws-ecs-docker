@@ -19,7 +19,7 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - aws ecs update-service --cluster CICD --service CICD --force-new-deployment
+      - aws ecs update-service --cluster $CLUSTER --service $CLUSTER --force-new-deployment
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
