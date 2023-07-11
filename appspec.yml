@@ -1,14 +1,23 @@
 version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /var/www/html
-hooks:
-  AfterInstall:
-    - location: scripts/install_nginx.sh
-      timeout: 300
-      runas: root
-  ApplicationStart:
-    - location: scripts/start_nginx.sh
-      timeout: 300
-      runas: root
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:ap-south-1:448472727005:task-definition"
+        LoadBalancerInfo:
+          ContainerName: "Demo"
+          ContainerPort: 80
+# Optional properties
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets: ["subnet-09cad3439c37aadc6","subnet-0acf7f21e86ae7896"]
+            SecurityGroups: ["sg-0ecdafeb6a83847d7"]
+            AssignPublicIp: "ENABLED"
+        CapacityProviderStrategy:
+          - Base: 1
+            CapacityProvider: "FARGATE_SPOT"
+            Weight: 2
+          - Base: 0
+            CapacityProvider: "FARGATE"
+            Weight: 1
