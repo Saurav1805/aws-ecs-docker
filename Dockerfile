@@ -6,6 +6,8 @@ COPY package.json .
 
 RUN npm install
 
+RUN nginx install -y
+
 COPY . .
 
 EXPOSE 3000
