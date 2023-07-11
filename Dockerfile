@@ -1,5 +1,7 @@
 FROM ubuntu
 
+RUN apt update
+
 WORKDIR /express-app
 
 COPY package.json .
