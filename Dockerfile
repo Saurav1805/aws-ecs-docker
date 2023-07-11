@@ -1,12 +1,12 @@
-FROM node:alpine
+FROM ubuntu
 
 WORKDIR /express-app
 
 COPY package.json .
 
-RUN npm install
+RUN apt install npm -y
 
-RUN nginx install -y
+RUN apt install nginx -y
 
 COPY . .
 
