@@ -5,7 +5,7 @@ Resources:
       Properties:
         TaskDefinition: "arn:aws:ecs:ap-south-1:448472727005:task-definition"
         LoadBalancerInfo:
-          ContainerName: "Demo"
+          ContainerName: "My-Container"
           ContainerPort: 80
 # Optional properties
         PlatformVersion: "LATEST"
