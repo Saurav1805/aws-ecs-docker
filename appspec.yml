@@ -3,16 +3,16 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:ap-south-1:448472727005:task-definition"
+        TaskDefinition: "arn:aws:ecs:ap-south-1:448472727005:task-definition/My-Task:3"
         LoadBalancerInfo:
-          ContainerName: "My-Container"
-          ContainerPort: 80
+          ContainerName: "CICD"
+          ContainerPort: 8080
 # Optional properties
         PlatformVersion: "LATEST"
         NetworkConfiguration:
           AwsvpcConfiguration:
-            Subnets: ["subnet-09cad3439c37aadc6","subnet-0acf7f21e86ae7896"]
-            SecurityGroups: ["sg-0ecdafeb6a83847d7"]
+            Subnets: ["subnet-09be93c268d94b2ef","subnet-030ac53c9b6fd5c36","subnet-01da72fbf9732ecf7"]
+            SecurityGroups: ["sg-053b66c4adca0432a"]
             AssignPublicIp: "ENABLED"
         CapacityProviderStrategy:
           - Base: 1
